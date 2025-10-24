@@ -29,7 +29,7 @@ NeoMama combines technology and compassion to deliver personalized maternal heal
 ## 🛠 Installation
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/neomama.git
+git clone https://github.com/KevinJr20/neomama.git
 ```
 2. Navigate to the project directory:
 ```bash
