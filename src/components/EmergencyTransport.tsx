@@ -42,9 +42,8 @@ interface TransportService {
 
 export function EmergencyTransport({ onBack, userName = "Grace" }: EmergencyTransportProps) {
   const [selectedType, setSelectedType] = useState<string>('all');
-  const [userLocation] = useState('Nairobi'); // In real app, get from GPS
+  const [userLocation] = useState('Nairobi');
 
-  // Kenyan emergency transport services
   const transportServices: TransportService[] = [
     {
       id: '1',
@@ -168,7 +167,6 @@ export function EmergencyTransport({ onBack, userName = "Grace" }: EmergencyTran
   };
 
   const callService = (phone: string, serviceName: string) => {
-    // In real app, would initiate call
     console.log(`Calling ${serviceName} at ${phone}`);
   };
 
@@ -178,65 +176,65 @@ export function EmergencyTransport({ onBack, userName = "Grace" }: EmergencyTran
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -100 }}
       transition={{ duration: 0.6 }}
-      className="min-h-screen bg-background max-w-sm mx-auto"
+      className="min-h-screen bg-background w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
     >
       {/* Header */}
-      <div className="flex items-center justify-between p-4 bg-card border-b border-border">
+      <div className="flex items-center justify-between py-4 bg-card border-b border-border">
         <Button variant="ghost" size="sm" onClick={onBack} className="p-2">
-          <ArrowLeft className="w-6 h-6 text-foreground" />
+          <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6 text-foreground" />
         </Button>
-        <h1 className="text-lg text-foreground">Emergency Transport</h1>
+        <h1 className="text-lg sm:text-xl md:text-2xl text-foreground">Emergency Transport</h1>
         <Button variant="ghost" size="sm" className="p-2">
-          <MapPin className="w-6 h-6 text-foreground" />
+          <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-foreground" />
         </Button>
       </div>
 
       {/* Quick Emergency Button */}
-      <div className="p-4 bg-red-50 border-b border-red-200">
+      <div className="py-4 bg-red-50 border-b border-red-200">
         <Card className="border-red-300 bg-red-100">
-          <CardContent className="p-4">
+          <CardContent className="p-4 sm:p-6">
             <div className="flex items-center space-x-3 mb-3">
-              <AlertTriangle className="w-6 h-6 text-red-600" />
+              <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
               <div>
-                <h3 className="text-red-800">Medical Emergency</h3>
-                <p className="text-red-700 text-sm">Need immediate help?</p>
+                <h3 className="text-red-800 text-base sm:text-lg">Medical Emergency</h3>
+                <p className="text-red-700 text-sm sm:text-base">Need immediate help?</p>
               </div>
             </div>
             <Button 
-              className="w-full bg-red-600 hover:bg-red-700"
+              className="w-full bg-red-600 hover:bg-green-700"
               size="lg"
               onClick={() => callService('1190', 'Emergency Services')}
             >
-              <Phone className="w-5 h-5 mr-2" />
-              Call 1190 - FREE Emergency Line
+              <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+              Call 911 - FREE Emergency Line
             </Button>
           </CardContent>
         </Card>
       </div>
 
       {/* Location Info */}
-      <div className="p-4 border-b border-border">
-        <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-          <MapPin className="w-4 h-4" />
+      <div className="py-4 border-b border-border">
+        <div className="flex items-center space-x-2 text-sm sm:text-base text-muted-foreground">
+          <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
           <span>Your location: {userLocation}</span>
-          <Badge className="bg-green-100 text-green-800 ml-auto">GPS Active</Badge>
+          <Badge className="bg-green-100 text-green-800 ml-auto text-xs sm:text-sm">GPS Active</Badge>
         </div>
       </div>
 
       {/* Service Type Filter */}
-      <div className="p-4 border-b border-border">
-        <div className="flex space-x-2 overflow-x-auto pb-2">
+      <div className="py-4 border-b border-border">
+        <div className="flex space-x-2 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-gray-300">
           {serviceTypes.map((type) => (
             <button
               key={type.id}
               onClick={() => setSelectedType(type.id)}
-              className={`flex items-center space-x-2 px-3 py-2 rounded-full text-sm whitespace-nowrap transition-colors ${
+              className={`flex items-center space-x-2 px-3 py-2 rounded-full text-xs sm:text-sm whitespace-nowrap transition-colors ${
                 selectedType === type.id
                   ? 'bg-primary text-primary-foreground'
                   : 'bg-muted text-muted-foreground hover:bg-accent'
               }`}
             >
-              <type.icon className="w-4 h-4" />
+              <type.icon className="w-4 h-4 sm:w-5 sm:h-5" />
               <span>{type.label}</span>
             </button>
           ))}
@@ -245,7 +243,7 @@ export function EmergencyTransport({ onBack, userName = "Grace" }: EmergencyTran
 
       <div className="pb-20">
         {/* Transport Services */}
-        <div className="p-4 space-y-4">
+        <div className="py-4 space-y-4">
           {filteredServices.map((service, index) => {
             const TypeIcon = getTypeIcon(service.type);
             
@@ -257,28 +255,28 @@ export function EmergencyTransport({ onBack, userName = "Grace" }: EmergencyTran
                 transition={{ delay: index * 0.1 }}
               >
                 <Card className="border-border hover:shadow-md transition-shadow">
-                  <CardContent className="p-4">
+                  <CardContent className="p-4 sm:p-6">
                     <div className="space-y-4">
                       {/* Header */}
-                      <div className="flex items-start justify-between">
+                      <div className="flex items-start justify-between flex-wrap gap-2">
                         <div className="flex items-center space-x-3">
-                          <TypeIcon className="w-6 h-6 text-primary" />
+                          <TypeIcon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                           <div>
                             <div className="flex items-center space-x-2">
-                              <h3 className="text-foreground">{service.name}</h3>
+                              <h3 className="text-foreground text-base sm:text-lg">{service.name}</h3>
                               {service.isPartner && (
-                                <Shield className="w-4 h-4 text-green-600" />
+                                <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
                               )}
                             </div>
-                            <div className="flex items-center space-x-2 mt-1">
-                              <Badge className={`text-xs ${getTypeBadge(service.type)}`}>
+                            <div className="flex items-center space-x-2 mt-1 flex-wrap gap-1">
+                              <Badge className={`text-xs sm:text-sm ${getTypeBadge(service.type)}`}>
                                 {service.type.replace('-', ' ')}
                               </Badge>
                               {service.available24_7 && (
-                                <Badge className="text-xs bg-blue-100 text-blue-800">24/7</Badge>
+                                <Badge className="text-xs sm:text-sm bg-blue-100 text-blue-800">24/7</Badge>
                               )}
                               {service.hasNICU && (
-                                <Badge className="text-xs bg-purple-100 text-purple-800">NICU</Badge>
+                                <Badge className="text-xs sm:text-sm bg-purple-100 text-purple-800">NICU</Badge>
                               )}
                             </div>
                           </div>
@@ -286,17 +284,17 @@ export function EmergencyTransport({ onBack, userName = "Grace" }: EmergencyTran
                         
                         <div className="text-right">
                           <div className="flex items-center space-x-1">
-                            <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                            <span className="text-sm text-foreground">{service.rating}</span>
+                            <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 fill-current" />
+                            <span className="text-sm sm:text-base text-foreground">{service.rating}</span>
                           </div>
                         </div>
                       </div>
 
                       {/* Service Info */}
-                      <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base">
                         <div>
                           <div className="flex items-center space-x-1 text-muted-foreground mb-1">
-                            <Clock className="w-3 h-3" />
+                            <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
                             <span>Response Time</span>
                           </div>
                           <p className="text-foreground">{service.responseTime}</p>
@@ -304,7 +302,7 @@ export function EmergencyTransport({ onBack, userName = "Grace" }: EmergencyTran
                         
                         <div>
                           <div className="flex items-center space-x-1 text-muted-foreground mb-1">
-                            <Heart className="w-3 h-3" />
+                            <Heart className="w-3 h-3 sm:w-4 sm:h-4" />
                             <span>Cost</span>
                           </div>
                           <p className="text-foreground">{service.cost}</p>
@@ -313,15 +311,15 @@ export function EmergencyTransport({ onBack, userName = "Grace" }: EmergencyTran
 
                       {/* Coverage */}
                       <div>
-                        <p className="text-xs text-muted-foreground mb-1">Coverage Areas:</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground mb-1">Coverage Areas:</p>
                         <div className="flex flex-wrap gap-1">
                           {service.coverage.slice(0, 3).map((area) => (
-                            <Badge key={area} variant="outline" className="text-xs">
+                            <Badge key={area} variant="outline" className="text-xs sm:text-sm">
                               {area}
                             </Badge>
                           ))}
                           {service.coverage.length > 3 && (
-                            <Badge variant="outline" className="text-xs">
+                            <Badge variant="outline" className="text-xs sm:text-sm">
                               +{service.coverage.length - 3} more
                             </Badge>
                           )}
@@ -330,10 +328,10 @@ export function EmergencyTransport({ onBack, userName = "Grace" }: EmergencyTran
 
                       {/* Features */}
                       <div>
-                        <p className="text-xs text-muted-foreground mb-1">Features:</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground mb-1">Features:</p>
                         <div className="flex flex-wrap gap-1">
                           {service.features.slice(0, 3).map((feature) => (
-                            <span key={feature} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
+                            <span key={feature} className="text-xs sm:text-sm bg-primary/10 text-primary px-2 py-1 rounded">
                               {feature}
                             </span>
                           ))}
@@ -343,10 +341,10 @@ export function EmergencyTransport({ onBack, userName = "Grace" }: EmergencyTran
                       {/* Specializations */}
                       {service.specializations.length > 0 && (
                         <div>
-                          <p className="text-xs text-muted-foreground mb-1">Specializations:</p>
+                          <p className="text-xs sm:text-sm text-muted-foreground mb-1">Specializations:</p>
                           <div className="flex flex-wrap gap-1">
                             {service.specializations.map((spec) => (
-                              <Badge key={spec} className="text-xs bg-green-100 text-green-800">
+                              <Badge key={spec} className="text-xs sm:text-sm bg-green-100 text-green-800">
                                 {spec}
                               </Badge>
                             ))}
@@ -355,19 +353,19 @@ export function EmergencyTransport({ onBack, userName = "Grace" }: EmergencyTran
                       )}
 
                       {/* Action Buttons */}
-                      <div className="flex space-x-2 pt-2">
+                      <div className="flex space-x-2 pt-2 flex-wrap gap-2">
                         <Button 
                           className="flex-1 bg-primary hover:bg-primary/90"
                           onClick={() => callService(service.phone, service.name)}
                         >
-                          <Phone className="w-4 h-4 mr-2" />
+                          <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                           Call Now
                         </Button>
                         <Button variant="outline" className="px-3">
-                          <MapPin className="w-4 h-4" />
+                          <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
                         </Button>
                         <Button variant="outline" className="px-3">
-                          <Star className="w-4 h-4" />
+                          <Star className="w-4 h-4 sm:w-5 sm:h-5" />
                         </Button>
                       </div>
                     </div>
@@ -379,11 +377,11 @@ export function EmergencyTransport({ onBack, userName = "Grace" }: EmergencyTran
         </div>
 
         {/* Important Information */}
-        <div className="p-4 bg-blue-50 border-t border-blue-200">
+        <div className="py-4 bg-blue-50 border-t border-blue-200">
           <Card className="border-blue-300 bg-blue-100">
-            <CardContent className="p-4">
-              <h4 className="text-blue-800 mb-2">🚨 Emergency Maternity Situations</h4>
-              <div className="text-xs text-blue-700 space-y-1">
+            <CardContent className="p-4 sm:p-6">
+              <h4 className="text-blue-800 mb-2 text-base sm:text-lg">🚨 Emergency Maternity Situations</h4>
+              <div className="text-xs sm:text-sm text-blue-700 space-y-1">
                 <p>• Call 1190 immediately for severe bleeding</p>
                 <p>• Water breaks and contractions start</p>
                 <p>• Severe headaches or vision problems</p>
@@ -391,7 +389,7 @@ export function EmergencyTransport({ onBack, userName = "Grace" }: EmergencyTran
                 <p>• Any situation that feels wrong or scary</p>
               </div>
               <div className="mt-3 p-2 bg-blue-200 rounded">
-                <p className="text-xs text-blue-800">
+                <p className="text-xs sm:text-sm text-blue-800">
                   <strong>Remember:</strong> It's better to call for help early than wait too long. 
                   Your instincts matter!
                 </p>

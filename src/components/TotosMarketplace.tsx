@@ -480,7 +480,7 @@ export function UbuntuMarketplace({ onBack, userName = "Brenda" }: UbuntuMarketp
               <CardHeader className="pb-3">
                 <h4 className="text-foreground flex items-center space-x-2">
                   <Gift className="w-5 h-5 text-primary" />
-                  <span>Ubuntu Support Fund</span>
+                  <span>NeoMama Support Fund</span>
                 </h4>
                 <p className="text-sm text-muted-foreground">
                   Community fund to support mothers in need

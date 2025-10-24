@@ -19,8 +19,8 @@ NeoMama combines technology and compassion to deliver personalized maternal heal
 - Nutrition Guidance for normal and high-risk pregnancies
 - Mental Wellness Support
 - Emergency Transport and Offline Emergency Guide
-- Digital Services: Birth Certificate & NHIF Integration
-- Wearable Sync and Impact Tracker
+- Digital Services: Birth Certificate & SHA Integration
+- Wearables Sync and Impact Tracker
 - Multilingual Chat and Community Support
 - Healthcare Provider Portal
 
